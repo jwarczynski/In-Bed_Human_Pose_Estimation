@@ -1,4 +1,10 @@
 # Byte-compiled / optimized / DLL files
+
+res/dataset/*
+.idea
+.vscode
+
+
 __pycache__/
 *.py[cod]
 *$py.class
