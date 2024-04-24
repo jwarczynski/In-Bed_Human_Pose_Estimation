@@ -2,6 +2,7 @@ from src.visualization import BODY_PARTS
 
 from easydict import EasyDict
 import matplotlib.pyplot as plt
+from cv2 import imread
 from scipy.io import loadmat
 import pandas as pd
 import glob
@@ -29,7 +30,7 @@ class HumanPoseDataset(torch.utils.data.Dataset):
         img_paths = []
         for subject_dir in glob.glob(f'{self.root_dir}/*'):
             if self.train and glob.glob(f'{subject_dir}/*.mat') == []:
-                logger.info(f'Subject {subject_dir} does not have ground truth data. Skipping...')
+                # logger.info(f'Subject {subject_dir} does not have ground truth data. Skipping...')
                 continue
             modality_dirs = glob.glob(f'{subject_dir}/*/')
             modality_img_pairs = zip(*[glob.glob(f'{modality}/*/*.png') for modality in modality_dirs])
@@ -56,7 +57,7 @@ class HumanPoseDataset(torch.utils.data.Dataset):
     def __getitem__(self, idx):
         img_pair_paths = self.img_paths[idx]
         indexes = extract_indexes(img_pair_paths)
-        images = [plt.imread(img_path) for img_path in img_pair_paths]
+        images = [imread(img_path) for img_path in img_pair_paths]
 
         if self.transform:
             images = (self.transform(img) for img in images)
