@@ -13,6 +13,9 @@ import torch
 
 import logging
 
+# Set separator based on the operating system
+SEPARATOR = os.path.sep
+
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.WARNING)
 
@@ -62,7 +65,7 @@ class HumanPoseDataset(torch.utils.data.Dataset):
         if self.transform:
             images = (self.transform(img) for img in images)
 
-        images = EasyDict({path.split('\\')[-3]: img for path, img in zip(img_pair_paths, images)})
+        images = EasyDict({path.split(SEPARATOR)[-3]: img for path, img in zip(img_pair_paths, images)})
         labels = []
         if self.train:
             labels = EasyDict({idx[-1]: self.ground_truth_df.loc[idx].values.tolist() for idx in indexes})
@@ -89,9 +92,9 @@ def get_ground_truth_for_subject(gt_matrices, modalities, subject_dir):
 
 
 def extract_index(img_path):
-    subject_id = int(img_path.split('\\')[-4])
-    image_id = int(img_path.split('\\')[-1].split('_')[-1].split('.')[0])
-    modality = img_path.split('\\')[-3]
+    subject_id = int(img_path.split(SEPARATOR)[-4])
+    image_id = int(img_path.split(SEPARATOR)[-1].split('_')[-1].split('.')[0])
+    modality = img_path.split(SEPARATOR)[-3]
     return subject_id, image_id, modality
 
 
