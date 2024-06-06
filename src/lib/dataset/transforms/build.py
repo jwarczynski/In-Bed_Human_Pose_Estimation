@@ -25,6 +25,12 @@ FLIP_CONFIG = {
     ],
     'CROWDPOSE_WITH_CENTER': [
         1, 0, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10, 12, 13, 14
+    ],
+    'MD': [
+        8, 9, 7, 10, 6, 11, 2, 3, 1, 4, 0, 5, 13, 12
+    ],
+    'MD_WITH_CENTER': [
+        8, 9, 7, 10, 6, 11, 2, 3, 1, 4, 0, 5, 13, 12, 14
     ]
 }
 
@@ -36,6 +42,8 @@ def build_transforms(cfg, is_train=True):
         dataset_name = 'COCO'
     elif 'crowd_pose' in cfg.DATASET.DATASET:
         dataset_name = 'CROWDPOSE'
+    elif 'md' in cfg.DATASET.DATASET:
+        dataset_name = 'MD'
     else:
         raise ValueError('Please implement flip_index \
             for new dataset: %s.' % cfg.DATASET.DATASET)

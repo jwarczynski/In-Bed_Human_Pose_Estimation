@@ -12,9 +12,10 @@ from __future__ import print_function
 
 import torch.utils.data
 
-# from .COCODataset import CocoDataset as coco
+from .MyDataset import Mydataset as md
+from .COCODataset import CocoDataset as coco
 # from .COCODataset import CocoRescoreDataset as rescore_coco
-# from .COCOKeypoints import CocoKeypoints as coco_kpt
+from .COCOKeypoints import CocoKeypoints as coco_kpt
 # from .CrowdPoseDataset import CrowdPoseDataset as crowd_pose
 # from .CrowdPoseDataset import CrowdPoseRescoreDataset as rescore_crowdpose
 # from .CrowdPoseKeypoints import CrowdPoseKeypoints as crowd_pose_kpt

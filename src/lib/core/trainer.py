@@ -31,6 +31,7 @@ def do_train(cfg, model, data_loader, loss_factory, optimizer, epoch,
     end = time.time()
     for i, (image, heatmap, mask, offset, offset_w) in enumerate(data_loader):
         data_time.update(time.time() - end)
+        image = image.cuda(non_blocking=True)
 
         pheatmap, poffset = model(image)
 

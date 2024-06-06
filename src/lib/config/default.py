@@ -29,7 +29,7 @@ _C.PIN_MEMORY = True
 _C.RANK = 0
 _C.VERBOSE = True
 _C.DIST_BACKEND = 'nccl'
-_C.MULTIPROCESSING_DISTRIBUTED = True
+_C.MULTIPROCESSING_DISTRIBUTED = False
 
 # Cudnn related params
 _C.CUDNN = CN()
@@ -62,6 +62,9 @@ _C.DATASET.MAX_NUM_PEOPLE = 30
 _C.DATASET.TRAIN = 'train2017'
 _C.DATASET.TEST = 'val2017'
 _C.DATASET.DATA_FORMAT = 'jpg'
+
+_C.DATASET.SPLITS = ('train', 'augment')
+_C.DATASET.OCCLUSIONS = ('uncover', 'cover1', 'cover2')
 
 # training data augmentation
 _C.DATASET.MAX_ROTATION = 30
