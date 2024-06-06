@@ -13,6 +13,8 @@ import torch
 
 import logging
 
+from .human_pose_dataset2 import HumanPoseDataset2
+
 # Set separator based on the operating system
 SEPARATOR = os.path.sep
 
