@@ -12,24 +12,30 @@ BODY_PARTS = [
 ]
 
 
-def show_prediction(original_IR_img, skeleton):
-    plt.imshow(original_IR_img)  # Display the original image
+def show_prediction(original_IR_img, skeleton, ax=None):
+    if ax is not None:
+        plt.sca(ax)
+    ax.imshow(original_IR_img)  # Display the original image
     for joint in skeleton:
         x, y = joint
-        plt.plot(x, y, 'ro')  # Plot each joint as a red dot
-        plt.axis('off')
-    plt.show()
+        ax.plot(x, y, 'ro')  # Plot each joint as a red dot
+        ax.axis('off')
+    if ax is None:
+        plt.show()
 
 
-def show_prediction_with_gt(original_IR_img, skeleton, gt_skeleton):
-    plt.imshow(original_IR_img)  # Display the original image
+def show_prediction_with_gt(original_IR_img, skeleton, gt_skeleton, ax=None):
+    if ax is not None:
+        plt.sca(ax)
+    ax.imshow(original_IR_img)  # Display the original image
     for predicted_joint, gt_joint in zip(skeleton, gt_skeleton):
         x, y = predicted_joint
         gt_x, gt_y = gt_joint
-        plt.plot(x, y, 'ro')  # Plot each joint as a red dot
-        plt.plot(gt_x, gt_y, 'bo')  # Plot each joint as a blue dot
-        plt.axis('off')
-    plt.show()
+        ax.plot(x, y, 'ro')  # Plot each joint as a red dot
+        ax.plot(gt_x, gt_y, 'bo')  # Plot each joint as a blue dot
+        ax.axis('off')
+    if ax is None:
+        plt.show()
 
 
 def show_img_annotated(axs, ir_img, rgb_img, gt=None):
